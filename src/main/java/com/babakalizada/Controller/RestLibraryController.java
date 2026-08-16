@@ -7,7 +7,6 @@ import com.babakalizada.DTO.priceDTO.PriceUpdateDto;
 import com.babakalizada.Entity.Library;
 import com.babakalizada.Service.impl.LibraryServiceImpl;
 import jakarta.validation.Valid;
-import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,11 +24,14 @@ public class RestLibraryController implements RestLibraryContollerImpl {
     @GetMapping(path = "/all-books")
     @Override
     public List<DtoLibrary> getAllBooks() {
+
         return libraryService.getAllBooks();
     }
+
     @GetMapping(path = "/all-books/{id}")
     @Override
     public DtoLibrary getBookById(@PathVariable(name = "id") Integer id) {
+
         return libraryService.getBookById(id);
     }
 
