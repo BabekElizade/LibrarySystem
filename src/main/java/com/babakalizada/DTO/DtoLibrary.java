@@ -2,6 +2,7 @@ package com.babakalizada.DTO;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,6 +26,7 @@ public class DtoLibrary {
     private String genre;
 
     @NotEmpty(message = "ISBN field cannot be empty!")
+    @Size(max = 13, min = 13, message = "ISBN must be just 13 character!")
     private String isbn;
 
     @NotNull(message = "Pages field cannot be empty!")
