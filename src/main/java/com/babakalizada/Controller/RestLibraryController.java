@@ -36,7 +36,7 @@ public class RestLibraryController implements RestLibraryContollerImpl {
     @PostMapping(path = "/update-price/{id}")
     @Override
     public DtoLibrary updateBookById(@PathVariable(name = "id") Integer id,
-                                     @RequestBody PriceUpdateDto price) {
+                                     @RequestBody @Valid PriceUpdateDto price) {
         return libraryService.updateBookPriceById(id, price.getPrice());
     }
     @GetMapping(path = "/all-books/find-book-by-name/{bookName}")

@@ -1,7 +1,6 @@
 package com.babakalizada.Repository;
 
-import com.babakalizada.DTO.DtoLibrary;
-import com.babakalizada.DTO.DtoLibraryUI;
+
 import com.babakalizada.Entity.Library;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
