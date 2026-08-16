@@ -2,8 +2,12 @@ package com.babakalizada.Controller;
 
 import com.babakalizada.Controller.impl.RestLibraryContollerImpl;
 import com.babakalizada.DTO.DtoLibrary;
+import com.babakalizada.DTO.DtoLibraryUI;
 import com.babakalizada.DTO.priceDTO.PriceUpdateDto;
+import com.babakalizada.Entity.Library;
 import com.babakalizada.Service.impl.LibraryServiceImpl;
+import jakarta.validation.Valid;
+import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,12 +35,19 @@ public class RestLibraryController implements RestLibraryContollerImpl {
 
     @PostMapping(path = "/update-price/{id}")
     @Override
-    public DtoLibrary updateBookById(@PathVariable(name = "id") Integer id, @RequestBody PriceUpdateDto price) {
+    public DtoLibrary updateBookById(@PathVariable(name = "id") Integer id,
+                                     @RequestBody PriceUpdateDto price) {
         return libraryService.updateBookPriceById(id, price.getPrice());
     }
     @GetMapping(path = "/all-books/find-book-by-name/{bookName}")
     @Override
     public List<DtoLibrary> findBookByName(@PathVariable(name = "bookName") String bookName) {
         return libraryService.findBookByName(bookName);
+    }
+
+    @PostMapping(path = "/add-books")
+    @Override
+    public DtoLibrary addBookDB(@Valid @RequestBody DtoLibraryUI library) {
+         return libraryService.addBookDB(library);
     }
 }

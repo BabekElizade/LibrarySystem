@@ -1,5 +1,7 @@
 package com.babakalizada.Repository;
 
+import com.babakalizada.DTO.DtoLibrary;
+import com.babakalizada.DTO.DtoLibraryUI;
 import com.babakalizada.Entity.Library;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -26,4 +28,12 @@ public interface LibraryRepository extends JpaRepository<Library, Integer> {
 
     @Query(value = "select * from library where bookname = :bookName", nativeQuery = true)
     List<Library> findBookByName(@Param("bookName") String bookName);
+
+    @Modifying
+    @Transactional
+    @Query(value = "insert into library (genre, isbn, author, bookname, price, publisher, quantity, pages) " +
+            "values (:#{#library.genre}, :#{#library.isbn}, :#{#library.author}, :#{#library.bookName}, " +
+            ":#{#library.price}, :#{#library.publisher}, :#{#library.quantity}, :#{#library.pages})",
+            nativeQuery = true)
+    void addBookDB(@Param("library") Library library);
 }

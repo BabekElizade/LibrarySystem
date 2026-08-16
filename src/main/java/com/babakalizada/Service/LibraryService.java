@@ -1,6 +1,7 @@
 package com.babakalizada.Service;
 
 import com.babakalizada.DTO.DtoLibrary;
+import com.babakalizada.DTO.DtoLibraryUI;
 import com.babakalizada.Entity.Library;
 import com.babakalizada.Repository.LibraryRepository;
 import com.babakalizada.Service.impl.LibraryServiceImpl;
@@ -60,6 +61,16 @@ public class LibraryService implements LibraryServiceImpl {
             dtoLibrary.add(dto);
         }
         return dtoLibrary;
+    }
+
+    @Override
+    public DtoLibrary addBookDB(DtoLibraryUI library) {
+        Library book = new Library();
+        DtoLibrary dto = new DtoLibrary();
+        BeanUtils.copyProperties(library, book);
+        BeanUtils.copyProperties(library, dto);
+        libraryRepository.addBookDB(book);
+        return dto;
     }
 
 
